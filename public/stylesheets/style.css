@@ -6,6 +6,11 @@ body {
 	background-size: cover;
 }
 
+#message{
+	font-size: 31px;
+	color: red;
+	text-align: center;
+}
 
 .page-wrapper{
     height: 95vh;
@@ -30,7 +35,7 @@ body {
 
 
 img{
-	width: 65px;
+	width: 80px;
 	height: 65px;
 }
 

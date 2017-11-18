@@ -6,6 +6,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel='stylesheet' href='./stylesheets/style.css' />
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+    	var onLoad;
+		onLoad = <%- locals.onLoad %>
+    </script>
 </head>
 
 <body>
@@ -21,10 +26,11 @@
     <div class="col-xs-offset-6 guest-menu">
         <div class="col-xs-12 box-content text-center">
 				<!-- login form -->
+				<div id="message"></div>
 			<div class="form">
 				<form class="loginForm" method = "post" action = "/loginForm">
 					<h1>Welcome Back</h1>
-			      <input class = "input" type="text" placeholder="email" name = "email" required/>
+			      <input class = "input" type="email" placeholder="email" name = "email" required/>
 			      <input class = "input" type="password" placeholder="password" name = "password" required/>
 			      <button type = "submit">Sign In</button>
 			      <!-- <p class="left col-xs-4 message"><a href="#">Back to Guest</a></p> -->
@@ -42,7 +48,7 @@
 						<input type="text" class="form-control" name="relationship" placeholder="Relationship to child (Mom, Dad, etc.)" value="6">
 						<input type="text" class="form-control" name="child_username" placeholder="Child's Username" value="7">
 						<br>    
-						<button type = "submit">Sign In</button>   					
+						<button id="registration" type = "submit">Sign In</button>   					
                         <p class="backToLogin col-xs-12 text-center"><a href="#"> Back to Login page</a></p>
                     </div>
 				</form>
@@ -58,16 +64,26 @@
 	</div>
 	<script>
 		//pull login function
-
+		$('#registration').click(()=>{
+				swal({
+				  title: "Good job!",
+				  text: "Now You Need To LogIn!",
+				  icon: "success",
+				  button: "Welcome!",
+				})
+		 //slowing down for 2 seconds to show sweet alert
+		});
+	
 
 		//pull registration page function
 		var pullRegistration = ()=>{
 			$('.loginForm').hide('slow');
-			$('.guest-menu').animate({height: "550px", top: "-150"}, "slow")
+			$('.guest-menu').animate({height: "570px", top: "-150"}, "slow")
 			$('.registerForm').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
 				console.log('produce register form');
 			});
 		};
+
 
 
 		//back to guest page
@@ -75,15 +91,16 @@
 			$('.registerForm').hide("slow");
 			$('.guest-menu').animate({height: "300px", top: "0"}, "slow")
 			$('.loginForm').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
-				console.log('welcome guest form has been served');
+				console.log('login guest form has been served');
 			});
 		}
-
 
 
 		//the following are just the listeners
 		// to pull login page
     	$('.backToLogin').click(()=>{
+    		$('#message').hide();
+
     		toLoginForm();
     		console.log("login form will be produced")
     	});
@@ -94,7 +111,20 @@
 			console.log("registration form should've been produced by now");
 		});
 		
-
+		$(document).ready(()=>{
+			if (onLoad == 1) {
+				pullRegistration();
+				// swal("You Must Register First!", {
+    //                   button: "We Appreciate That!",
+    //                 });
+    		swal({
+  				title: "You Must Register First",
+  				text: "Or Retry Login again",
+  				icon: "error",
+  				button: "Thank you!",
+			});
+			}
+		})
 
 		
     </script>
