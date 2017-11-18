@@ -11,13 +11,10 @@ body {
     height: 95vh;
    }
 
-.form .login-form {
+
+.registerForm {
 	position: inherit;
-	 /*display: none; */
-}
-.register-form-2 {
-	position: inherit;
-	/*display: none; */
+	display: none; 
 }
 
 .form .register-form{
@@ -69,7 +66,7 @@ p{
 	text-align: center;
 }
 
-.input, input {
+form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
@@ -82,12 +79,6 @@ p{
   text-align: center;
 }
 
-.two-fields{
-	
-}
-
-.left, .right{
-}
 
 .form button {
   font-family: "Roboto", sans-serif;

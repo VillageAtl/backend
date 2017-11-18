@@ -28,16 +28,14 @@
 			      <input class = "input" type="password" placeholder="password" name = "password" required/>
 			      <button type = "submit">Sign In</button>
 			      <!-- <p class="left col-xs-4 message"><a href="#">Back to Guest</a></p> -->
-			    	<p class="right col-xs-offset-6 social-media"><a href="#">Register as New User</a></p>
+			    	<p class="login col-xs-offset-6 register"><a href="#">Register as New User</a></p>
 			    </form>
 			    <!-- registration form -->
 			    <form class = "registerForm" action="/registerForm" method="post">
 			    <h1>REGISTRATION FORM</h1>
                    <div class="form-group">
-					<div class="row two-fields">
-						<input class="col-xs-6 flow-left" type="text" name="first_name" placeholder = "First Name" value="Nik">
-						<input class="col-xs-6 flow-right" type="text" name="last_name" placeholder = "Last Name" value="B">
-					</div>
+						<input class="form-control" type="text" name="first_name" placeholder = "First Name" value="Nik">
+						<input class="form-control" type="text" name="last_name" placeholder = "Last Name" value="B">
                         <input type="email" class="form-control" name="email" placeholder="Email Address" name = "email" value="3@3">
                         <input type="password" class="form-control" name="password" placeholder="Password">
                         <input type="text" class="form-control" name="child_name" placeholder="Child's Name" value="5">
@@ -45,7 +43,7 @@
 						<input type="text" class="form-control" name="child_username" placeholder="Child's Username" value="7">
 						<br>    
 						<button type = "submit">Sign In</button>   					
-                        <p class="back-to-guest col-xs-12 text-center"><a href="#"> Back to Login page</a></p>
+                        <p class="backToLogin col-xs-12 text-center"><a href="#"> Back to Login page</a></p>
                     </div>
 				</form>
 				<!-- second registration form -->
@@ -60,42 +58,23 @@
 	</div>
 	<script>
 		//pull login function
-		
-		var pullLogin = () =>{
-			$('.register-form').hide("slow");
-			$('.guest-form').toggle(()=>{
-
-	   		$('.login-form').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
-	   			console.log("now that effect has finished and callback function served we can move on")
-	   			});
-				   
-	   		});
-		};
 
 
 		//pull registration page function
 		var pullRegistration = ()=>{
-			$('.guest-form').hide('slow');
-			$('.guest-menu').animate({height: "600px", top: "-150px"}, "slow")
-			$('.register-form').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
+			$('.loginForm').hide('slow');
+			$('.guest-menu').animate({height: "550px", top: "-150"}, "slow")
+			$('.registerForm').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
 				console.log('produce register form');
 			});
 		};
 
-		var pullSecondRegistration = ()=>{
-			$('.register-form').hide('slow');
-			$('.guest-form').hide('slow');
-			$('.guest-menu').animate({height: "600px", top: "-150px"}, "slow") 
-			$('.register-form-2').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
-				console.log('produce register form');
-			});
-		};
 
 		//back to guest page
-		var toGuestPage = ()=>{
-			$('.register-form').hide("slow");
+		var toLoginForm = ()=>{
+			$('.registerForm').hide("slow");
 			$('.guest-menu').animate({height: "300px", top: "0"}, "slow")
-			$('.guest-form').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
+			$('.loginForm').animate({height: "toggle", opacity: "toggle"}, "slow",()=>{
 				console.log('welcome guest form has been served');
 			});
 		}
@@ -104,29 +83,20 @@
 
 		//the following are just the listeners
 		// to pull login page
-    	$('.message a').click(()=>{
-    		pullLogin();
+    	$('.backToLogin').click(()=>{
+    		toLoginForm();
     		console.log("login form will be produced")
     	});
 		
 		// to pull registration page
-		$('.register a').click(function(){
+		$('.register').click(function(){
 			pullRegistration();
 			console.log("registration form should've been produced by now");
 		});
 		
 
-		// back to guest page
-		$('.back-to-guest').click(()=>{
-			toGuestPage();
-			console.log('back to guest page');
-		})
 
-		$('.go-to-second-register-form').click(()=>{
-			pullSecondRegistration();
-			console.log('back to guest page');
-		})
-
+		
     </script>
  </div>
 </body>
