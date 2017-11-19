@@ -9,8 +9,8 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const bcrypt = require('bcrypt-nodejs');
 const swal = require('sweetalert');
-const io = require('socket.io');
-const apiai = require('apiai')('35c622ace8eb4059b215441b08650a5d')//apiai token
+// const io = require('socket.io');
+// const apiai = require('apiai')('35c622ace8eb4059b215441b08650a5d')//apiai token
 // const geocode = require('./geocode/geocode.js'); //module to extract lat,lng from zip code
 const port = process.env.PORT || 3000; //configures to available port based on
 //enviroment variable or port 3000 by default
@@ -40,7 +40,6 @@ db.connect ((error) => { //connecting to our database
         console.log("connection to db = success!");
     }
 })
-//dealing with sockets
 
 
 var server = http.createServer(app);
@@ -70,17 +69,21 @@ app.get('/', (req, res) => {
 
 //serves front login page and veryfies if user in database
 app.post('/loginForm', (req, res, next) => {
+    console.log('receiving data from login form');
     var email = req.body.email;
     var password = req.body.password;
     console.log("this is what received from form: ", email, password)
     const selectQuery = `SELECT * FROM parents WHERE email = ? and pw = ?;`;
+    const childSelectQuery = `SELECT child_name FROM parents where email=?;`;
     db.query(selectQuery, [email, password],(error, results)=>{
         // var passwordsMatch = bcrypt.compareSync(password,results[0].pw)
         //did this return a row? If so, the user already exists
         if (results.length != 0){
             console.log('users email is in database')
             // res.send("User is in database")
+            
             res.render('chatBot',{
+
 
              });
         }else{
@@ -88,7 +91,8 @@ app.post('/loginForm', (req, res, next) => {
             // const insertQuery = `INSERT INTO users (first_name, last_name, email, pw, child_name, relationship, child_username, fav_color, submission_date) VALUES (DEFAULT, ?,?,?);`;
             console.log('user must be inserted')
             res.render('index', {
-                onLoad: 1
+                onLoad: 2
+                
             })
             
         }
@@ -116,7 +120,9 @@ app.post('/registerForm', (req, res)=>{
         //did this return a row? If so, the user already exists
         if (results.length != 0){
             console.log('user is in database, must login now')
-            res.render('index',{ });
+            res.render('index',{
+                onLoad: 1
+             });
         }else{
             //this is a new user - insert them - user must register
             console.log('user must be inserted')
