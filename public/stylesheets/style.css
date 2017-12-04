@@ -1,9 +1,14 @@
+.bg-village-blue {
+    background-color: #1e87dd!important;
+}
+
 body {
     position: relative;
-    padding: 30px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     background: url('../images/natureBackground.jpeg');
-    background-size: cover;
+    background-size: 210%;
+    background-position-x: -413px;
+    background-position-y: 90px;
 }
 .page-wrapper {
     height: 95vh;
@@ -35,17 +40,13 @@ img {
     padding: 0;
     margin: 0;
 }
-.left,
-.right {
-    font-size: 18px;
-}
 .guest-menu {
     position: relative;
     z-index: 5;
     height: 200px;
     width: 80%;
     margin: 10% auto;
-    /*background: rgba(0, 0, 0, 0.5);*/
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 .response-box {
@@ -145,7 +146,7 @@ p {
 body {
     font-size: 1.1vw;
 }
-/* 
+/*
 	For Smartphones
 */
 
@@ -186,18 +187,10 @@ body {
         font-size: calc(10px);
     }
 }
-/*
-@media screen and (max-width: 770px) {
-    .guest-menu{
-        height: 550px;
-    }
-    }
-}
-*/
 
 
-/*  */
+
 .vcenter {
     display: inline-block;
     vertical-align: middle;
-}
+}*/

@@ -81,7 +81,7 @@ app.post('/loginForm', (req, res, next) => {
         if (results.length != 0){
             console.log('users email is in database')
             // res.send("User is in database")
-            
+
             res.render('chatBot',{
 
 
@@ -92,9 +92,9 @@ app.post('/loginForm', (req, res, next) => {
             console.log('user must be inserted')
             res.render('index', {
                 onLoad: 2
-                
+
             })
-            
+
         }
     })
     // res.send('I got something here')
@@ -141,13 +141,13 @@ app.post('/registerForm', (req, res)=>{
                     res.render('chatBot',{
                         onLoad: 2
                     });
-                    
+
                 }
             })
         }
     })
 })
-    
+
 
 server.listen(port, (error) => {
     (error) ? console.log("your code sucks"): console.log(`listening on port ${port}`);
